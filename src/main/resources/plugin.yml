@@ -1,6 +1,6 @@
 name: RepakLogger
 version: '${version}'
-main: net.repakmc.jogar.repaklogger.RepakLogger
+main: net.repakmc.jogar.repaklogger.RepakDiscordLogger
 authors: [ mattnicee7 ]
 description: A discord logger for RepakMC
 website: github.com/RepakMC
