@@ -8,6 +8,8 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import net.repakmc.jogar.repaklogger.listener.PlayerCommandProcessListener;
+import net.repakmc.jogar.repaklogger.listener.PlayerJoinListener;
+import net.repakmc.jogar.repaklogger.listener.PlayerQuitListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Arrays;
@@ -23,6 +25,8 @@ public final class RepakDiscordLogger extends JavaPlugin {
 
     @Getter private String channelId;
     @Getter private String guildId;
+
+    @Getter private String entryChannelId;
 
     @Override
     public void onEnable() {
@@ -40,10 +44,13 @@ public final class RepakDiscordLogger extends JavaPlugin {
         saveDefaultConfig();
         channelId = getConfig().getString("channelId");
         guildId = getConfig().getString("guildId");
+        entryChannelId = getConfig().getString("entryChannelId");
     }
 
     private void registerEvents() {
         new PlayerCommandProcessListener(this);
+        new PlayerJoinListener(this);
+        new PlayerQuitListener(this);
     }
 
     @SneakyThrows
